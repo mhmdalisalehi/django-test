@@ -45,6 +45,10 @@ INSTALLED_APPS = [
     "testdb",
     'home.apps.HomeConfig',
     'accounts.apps.AccountsConfig',
+    'rest_framework',
+    'restapitest.apps.RestapitestConfig'
+
+
 ]
 
 MIDDLEWARE = [
