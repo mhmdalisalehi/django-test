@@ -44,18 +44,15 @@ class User(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    username = models.CharField(max_length=50,null=True, blank=True, unique=True,verbose_name="username",)
-    phone = models.IntegerField(unique=True, null=True, blank=True, verbose_name="phone number")
-    first_name = models.CharField(max_length=50, null=True, blank=True, verbose_name="first name")
-    last_name = models.CharField(max_length=50, null=True, blank=True, verbose_name="last name")
-    address = models.CharField(max_length=150, null=True, blank=True, verbose_name="address")
+    username = models.CharField(max_length=50, unique=True,verbose_name="username",)
+    phone = models.IntegerField(unique=True, null=True, blank=True, verbose_name="phone number",)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
     objects = UserManager()
 
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["username", "phone",]
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["email", "phone",]
 
     def __str__(self):
         return self.email
@@ -75,4 +72,14 @@ class User(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    address = models.CharField(max_length=150, null=True, blank=True)
+    first_name = models.CharField(max_length=50, null=True, blank=True)
+    last_name = models.CharField(max_length=50, null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username
 

@@ -51,7 +51,7 @@ class UserChangeForm(forms.ModelForm):
 
 class UserRegistrationForm(forms.ModelForm):
     username = forms.CharField(max_length=30)
-    phone = forms.IntegerField()
+    phone = forms.IntegerField(widget=forms.NumberInput)
     email = forms.EmailField()
     password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
     password2 = forms.CharField(
@@ -96,13 +96,11 @@ class UserRegistrationForm(forms.ModelForm):
 
 
 class UserLoginForm(forms.ModelForm):
-    username = forms.CharField(max_length=30)
+    user = forms.CharField(max_length=30)
     password = forms.CharField(label="Password", widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ('username', 'password')
-
-
+        fields = ('user', 'password')
 
 

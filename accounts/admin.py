@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserChangeForm
-from .models import User
+from .models import User, Profile
 
 
 class UserAdmin(BaseUserAdmin):
@@ -18,8 +18,7 @@ class UserAdmin(BaseUserAdmin):
     list_display = ('username', 'email', 'phone',)
     list_filter = ('email', 'is_active',)
     fieldsets = (
-        (None, {'fields': ('username', 'email', 'password')}),
-        ('Personal info', {'fields': ('first_name', 'last_name', 'address', 'phone')}),
+        (None, {'fields': ('username', 'email','phone', 'password')}),
         ('Permissions', {'fields': ('is_active', 'is_admin')}),
     )
 
@@ -34,8 +33,14 @@ class UserAdmin(BaseUserAdmin):
 
 
 
+
+
+admin.site.register(Profile, )
+
 # Now register the new UserAdmin...
 admin.site.register(User, UserAdmin)
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
 admin.site.unregister(Group)
+
+
