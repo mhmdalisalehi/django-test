@@ -21,5 +21,7 @@
         <tr>
             <th>{{ profile.user.email }}</th>
         </tr>
+        <a href="{% url 'accounts:user_update' %}">change profile</a><br>
+        <a href="{% url 'accounts:change' %}">change password</a>
     </table>
 {% endblock %}
