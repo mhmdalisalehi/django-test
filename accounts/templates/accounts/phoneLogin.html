@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}login with phone{% endblock %}
+{% block head %}
+
+{% endblock %}
+{% block body %}
+	<h1>login with phone</h1>
+    <form method="post">
+    {% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit">verify</button>
+    </form>
+{% endblock %}

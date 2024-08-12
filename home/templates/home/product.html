@@ -2,4 +2,10 @@
 {% block title %}
 	product
 {% endblock %}
-{% block body %}products{% endblock body %}
+{% block body %}
+    {% for prd in product %}
+        <h1>{{ prd.name }}</h1>
+        <img src="{{ prd.image.url }}" style="width: 300px;height: 300px;">
+    {% endfor %}
+
+{% endblock body %}

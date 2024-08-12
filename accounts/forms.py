@@ -115,3 +115,10 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ('email', 'phone',)
 
+
+class PhoneLoginForm(forms.Form):
+    phone = forms.CharField(widget=forms.NumberInput)
+
+
+class VerifyForm(forms.Form):
+    code = forms.IntegerField(widget=forms.NumberInput)

@@ -1,5 +1,7 @@
+from random import randint
+
 from django.shortcuts import render,redirect
-from .forms import UserRegistrationForm, UserLoginForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegistrationForm, UserLoginForm, UserUpdateForm, ProfileUpdateForm, PhoneLoginForm, VerifyForm
 from .models import User,Profile
 from django.contrib.auth import authenticate, login,logout,update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
@@ -100,4 +102,43 @@ def change_password(request):
     context = {'form': form}
     return render(request, 'accounts/change.html', context)
 
+
+def login_phone(request):
+    if request.method == 'POST':
+        form = PhoneLoginForm(request.POST)
+        if form.is_valid():
+            global random_code,phone_number
+            phone_number = form.cleaned_data['phone']
+            if User.objects.filter(phone=phone_number).exists():
+                random_code = randint(100000,999999)
+                print(random_code)
+                # sms=ghasedak.Ghasedak('APIKEY')
+                # sms.send({'message': random_code,'receptor':phone,'linenumber':"10008566"})
+                return redirect('accounts:verify')
+            else:
+                messages.error(request, 'Invalid phone number', 'danger')
+
+
+
+
+    else:
+        form = PhoneLoginForm()
+    context = {'form': form}
+    return render(request,'accounts/phoneLogin.html', context)
+
+
+def verify(request):
+    if request.method == 'POST':
+        form = VerifyForm(request.POST)
+        if form.is_valid():
+            if form.cleaned_data['code'] == random_code:
+                user = User.objects.get(phone=phone_number)
+                login(request, user)
+                return redirect('home:home')
+            else:
+                messages.error(request, 'Invalid code', 'danger')
+    else:
+        form = VerifyForm()
+    context = {'form': form}
+    return render(request,'accounts/verify.html',context)
 

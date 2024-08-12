@@ -45,7 +45,7 @@ class User(AbstractBaseUser):
         unique=True,
     )
     username = models.CharField(max_length=50, unique=True,verbose_name="username",)
-    phone = models.IntegerField(unique=True, null=True, blank=True, verbose_name="phone number",)
+    phone = models.CharField(unique=True, null=True, blank=True, verbose_name="phone number",)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
