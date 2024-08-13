@@ -13,6 +13,23 @@
           <a class="nav-link" href="{% url 'home:product' %}">product</a>
         </li>
 
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+              {% for cat in category %}
+                  {% if cat.is_subcategory %}
+                    <li><a class="dropdown-item" href="">{{ cat.name }}</a></li>
+                  {% endif %}
+
+
+
+              {% endfor %}
+
+          </ul>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Disabled</a>
         </li>

@@ -4,8 +4,10 @@
 {% endblock %}
 {% block body %}
     {% for prd in product %}
+        <a href="{{ prd.get_absolute_url }}" style="">
         <h1>{{ prd.name }}</h1>
         <img src="{{ prd.image.url }}" style="width: 300px;height: 300px;">
+        </a>
     {% endfor %}
 
 {% endblock body %}

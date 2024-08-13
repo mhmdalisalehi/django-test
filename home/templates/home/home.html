@@ -4,8 +4,10 @@
 {% endblock %}
 {% block body %}
     {% for cat in category %}
-        <h1>{{ cat.name }}</h1>
+        <a href="{{ cat.get_absolute_url }}">
+            <h1>{{ cat.name }}</h1>
         <img src="{{ cat.image.url }}" style="width: 300px;height: 300px;">
+        </a>
     {% endfor %}
 
 {% endblock body %}

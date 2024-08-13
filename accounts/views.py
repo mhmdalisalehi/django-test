@@ -116,8 +116,8 @@ def login_phone(request):
                 # sms.send({'message': random_code,'receptor':phone,'linenumber':"10008566"})
                 return redirect('accounts:verify')
             else:
-                messages.error(request, 'Invalid phone number', 'danger')
 
+                messages.error(request, 'Invalid phone number', 'danger')
 
 
 

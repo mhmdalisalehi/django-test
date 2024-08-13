@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+	details
+{% endblock %}
+{% block body %}
+{% if  product %}
+    <h1> {{ product.name }}</h1>
+
+        <img src="{{ product.image.url }}" style="width: 300px;height: 300px;">
+    <p>info: {{ product.information }}</p><br>
+    <small>:amount: {{ product.amount }}</small><br>
+    {% if product.discount %}
+        <small>unit price: {{ product.unitPrice }}</small><br>
+        <small>discount: {{ product.discount }} %</small><br>
+    {% endif %}
+    <small>total price: {{ product.totalPrice }}</small><br>
+
+{% endif %}
+
+{% endblock body %}
