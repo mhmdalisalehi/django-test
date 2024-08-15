@@ -1,10 +1,12 @@
-from django.urls import path
-
+from django.urls import path,include
+from rest_framework import routers
 from . import views
+from rest_framework.urlpatterns import format_suffix_patterns
 
 app_name = 'restapi'
 
 urlpatterns = [
-    path('get/', views.getData),
-    path('post/', views.postData),
+    path('', views.data_list),
+    path('data/<int:pk>/', views.data_detail),
 ]
+
