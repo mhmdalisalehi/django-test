@@ -6,7 +6,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 app_name = 'restapi'
 
 urlpatterns = [
-    path('', views.data_list),
-    path('data/<int:pk>/', views.data_detail),
+    path('', views.DataList.as_view(), name='data_list'),
+    path('data/<int:pk>/', views.DataDetail.as_view(), name='data_detail'),
 ]
 
