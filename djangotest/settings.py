@@ -33,6 +33,12 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = "accounts.User"
 # Application definition
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
 
 INSTALLED_APPS = [
 
