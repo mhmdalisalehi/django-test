@@ -8,5 +8,7 @@ app_name = 'restapi'
 urlpatterns = [
     path('', views.DataList.as_view(), name='data_list'),
     path('data/<int:pk>/', views.DataDetail.as_view(), name='data_detail'),
+    path('users/', views.UserList.as_view()),
+    path('users/<int:pk>/', views.UserDetail.as_view()),
 ]
 
